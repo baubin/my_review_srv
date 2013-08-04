@@ -10,36 +10,37 @@
 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-  <script type="text/template" id="media-template">
-    //<span><%= id %></span>
-    <span><%= type %></span>
-    <span><%= name %></span>
-    <span><%= url %></span>
-  </script>
-
-
-  <div id='media-container'></div>
-
 
 
 
 
 
   <!--
-  - Old test form
+  - Test form
   -->
 
-  <!--
+  
   <form action="medias" method="post">
+
     <label>Type</label>
     <select name="type">
       <option>image</option>
       <option>video</option>
     </select>
+    <br><br>
+
     <label>Name</label>
     <input type="text" name="name" />
+    <br><br>
+
     <label>URL</label>
     <input type="text" name="url" />
+    <br><br>
+
+    <label>Description</label>
+    <input type="textarea" name="description" />
+    <br><br>
+
     <input type="submit" name="Envoyer" />
 </form>
 
@@ -47,7 +48,6 @@
     <label>Test</label>
     <input type="submit" name="GET" />
 </form>
--->
 
 </body>
 

@@ -1,6 +1,6 @@
 <?php
 
-class medias extends \BaseController {
+class notes extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -10,9 +10,9 @@ class medias extends \BaseController {
 	public function index()
 	{
 		
-		$medias = DB::table('media')
+		$notes = DB::table('note')
 			->get();
-		return json_encode($medias);
+		return json_encode($notes);
 	}
 
 	/**
@@ -22,12 +22,11 @@ class medias extends \BaseController {
 	 */
 	public function create()
 	{
-		$input = DB::table('media')
+		$input = DB::table('note')
 			->insert(array(
-				'type'	=> Input::get('type'),
-				'name'	=> Input::get('name'),
-				'url'	=> Input::get('url'),
-				'description'	=> Input::get('description')
+				'media_id'	=> Input::get('media_id'),
+				'title'	=> Input::get('title'),
+				'content'	=> Input::get('content')
 			));
 
 		return json_encode($input);
@@ -41,10 +40,24 @@ class medias extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$media = DB::table('media')
+		$note = DB::table('note')
 			->where('id', $id)
 			->first();
-		return json_encode($media);
+		return json_encode($note);
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function filter($id)
+	{
+		$notes = DB::table('note')
+			->where('media_id', $id)
+			->get();
+		return json_encode($notes);
 	}
 
 	/**
@@ -55,13 +68,12 @@ class medias extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$input = DB::table('media')
+		$input = DB::table('note')
             ->where('id', $id)
             ->update(array(
-            	'type'	=> Input::get('type'),
-            	'name'	=> Input::get('name'),
-            	'url'	=> Input::get('url'),
-				'description'	=> Input::get('description')
+				'media_id'	=> Input::get('media_id'),
+				'title'	=> Input::get('title'),
+				'content'	=> Input::get('content')
             ));
 
 		return $input;
@@ -75,7 +87,7 @@ class medias extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$input = DB::table('media')
+		$input = DB::table('note')
             ->where('id', $id)
             ->delete();
 
